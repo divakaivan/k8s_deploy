@@ -53,7 +53,7 @@ when I run `kubectl get all`
 
 #### Test the deployment
 
-![prt-frwd](pics/port-frwd.png)
+![portfwd](pics/prt-frwd.png)
 
 We can use port-forwarding:
 
