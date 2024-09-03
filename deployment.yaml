@@ -1,0 +1,23 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: app-deployment  # name of the deployment, used to identify the deployment object
+spec:
+  replicas: 1  # number of pod replicas that should be running at any time
+  selector:
+    matchLabels:
+      app: app  # identifies the pods managed by this deployment using the "app: app" label
+  template:
+    metadata:
+      labels:
+        app: app  # the label applied to the pods, used by the deployment to manage the pods
+    spec:
+      containers:
+      - name: app-pod  # name of the container inside the pod.
+        image: test-model:v1  # container image to use
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 9696  # exposed port of the container
