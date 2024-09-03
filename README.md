@@ -37,15 +37,15 @@ kubectl apply -f deployment.yaml
 
 ![failed-deployment](pics/image-not-available.png)
 
-k8s does not know about the ping:v001 image, so we should register it first. Load it with
+k8s does not know about the test-model:v1 image, so we should register it first. Load it with
 
 ```
-kind load docker-image ping:v001
+kind load docker-image test-model:v1
 ``` 
 
 The deployment keeps retrying to load the image, and once the image is loaded, we get
 
-`ping-deployment-7bfd99c878-fnbxl   1/1     Running   0          4m32s`
+`app-deployment-7bfd99c878-fnbxl   1/1     Running   0          4m32s`
 
 when I run `kubectl get all`
 
@@ -86,7 +86,7 @@ We can see it with `kubectl get svc`
 ```
 NAME         TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
 kubernetes   ClusterIP      10.96.0.1      <none>        443/TCP        29m
-ping         LoadBalancer   10.96.94.146   <pending>     80:30966/TCP   2m15s
+app         LoadBalancer   10.96.94.146   <pending>     80:30966/TCP   2m15s
 ```
 
 The EXTERNAL-IP is always pending unless we use some service like GKE and EKS
@@ -95,7 +95,7 @@ The EXTERNAL-IP is always pending unless we use some service like GKE and EKS
 #### Test the k8s service
 
 ```
-kubectl port-forward service/ping 8080:80 
+kubectl port-forward service/app 8080:80 
 ```
 
 Terminal:
