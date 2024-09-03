@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app # name of the service
+spec:
+  type: LoadBalancer # LoadBalancer means expose the service outside the cluster
+  selector:
+    app: app # selects the pods with the label "app: app"
+  ports:
+  - port: 80 # port in the service
+    targetPort: 9696 # port on the pod
